@@ -8,8 +8,5 @@ import java.util.List;
 // Create a method named "addClientReg" and declare it in ClientRegServiceI
 public interface EmployeeRegServiceI {
 
-    // Method to add client registration
-    ClientRegDto addClientReg(ClientRegDto clientRegDto);
-
     EmployeeRegDto addEmployeeRegEntity(EmployeeRegDto employeeRegDto);
 }

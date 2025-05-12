@@ -12,23 +12,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmployeeRegService implements EmployeeRegServiceI {
 
-//    private final EmployeeRegRepository employeeRegRepository;
-//    private final EmployeeRegMapper employeeRegMapper;
-//
-//    public EmployeeRegService(EmployeeRegRepository employeeRegRepository, EmployeeRegMapper employeeRegMapper) {
-//        this.employeeRegRepository = employeeRegRepository;
-//        this.employeeRegMapper = employeeRegMapper;
-//    }
+    private final EmployeeRegRepository employeeRegRepository;
+    private final EmployeeRegMapper employeeRegMapper;
 
-    @Autowired
-    private EmployeeRegRepository employeeRegRepository;
-
-    @Autowired
-    private EmployeeRegMapper employeeRegMapper;
-
-    @Override
-    public ClientRegDto addClientReg(ClientRegDto clientRegDto) {
-        return null;
+    public EmployeeRegService(EmployeeRegRepository employeeRegRepository, EmployeeRegMapper employeeRegMapper) {
+        this.employeeRegRepository = employeeRegRepository;
+        this.employeeRegMapper = employeeRegMapper;
     }
 
     @Override
@@ -37,7 +26,7 @@ public class EmployeeRegService implements EmployeeRegServiceI {
         EmployeeRegEntity savedItem = employeeRegRepository.save(employeeRegEntity);
 
         EmployeeRegDto savedEmployeeRegDto = employeeRegMapper.toEmployeeRegDto(savedItem);
-        System.out.println("saved Successfully: " + savedEmployeeRegDto.getFirstName());
+//        System.out.println("saved Successfully: " + savedEmployeeRegDto.getFirstName());
 //        return employeeRegMapper.toEmployeeRegDto(savedItem);
         return savedEmployeeRegDto;
     }
