@@ -10,5 +10,5 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring" , builder = @Builder(disableBuilder = true))
 public interface EmployeeRegMapper {
     EmployeeRegDto toEmployeeRegDto(EmployeeRegEntity employeeRegEntity);
-    EmployeeRegEntity toEmployeeRegEntity(EmployeeRegDto employeeRegDto);
+    EmployeeRegEntity toEmployeeRegEntity(EmployeeRegDto  employeeRegDto);
 }
