@@ -90,17 +90,4 @@ public class ClientRegService implements ClientRegServiceI {
         throw new AppException("Request filled with error:" + e, HttpStatus.BAD_REQUEST);}
     }
 
-    /*Explaining the above code:
-    1.This is the backend API handler for the PUT request.
-    2.It finds the existing client by id.
-    3.If not found, throws an error (Client Reg Does Not Exist).
-    4.If found: Converts incoming DTO to entity.
-    5.Sets the existing ID on the new entity.
-    6.Saves the updated entity in the database.
-    7.Returns the updated data as a DTO.(responseClientRegDTO)
-    8.This method(updateClientReg) is called when Angular’s editData() sends the PUT request to /client-reg/{id}.
-     */
-
-    /*Refer Code 01*/
-
 }
