@@ -2,6 +2,8 @@ package com.bit.backend.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "stylist_task_management")
 public class StylistTaskManagementEntity {
@@ -17,7 +19,7 @@ public class StylistTaskManagementEntity {
     private String serviceType;
 
     @Column(name = "date")
-    private String date;
+    private LocalDate date;
 
     @Column(name = "start_time")
     private String startTime;
@@ -31,7 +33,7 @@ public class StylistTaskManagementEntity {
     public StylistTaskManagementEntity() {
     }
 
-    public StylistTaskManagementEntity(Long id, String stylistName, String serviceType, String date, String startTime, String endTime, String status) {
+    public StylistTaskManagementEntity(Long id, String stylistName, String serviceType, LocalDate date, String startTime, String endTime, String status) {
         this.id = id;
         this.stylistName = stylistName;
         this.serviceType = serviceType;
@@ -65,11 +67,11 @@ public class StylistTaskManagementEntity {
         this.serviceType = serviceType;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

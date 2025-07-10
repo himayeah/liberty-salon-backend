@@ -1,11 +1,13 @@
 package com.bit.backend.dtos;
 
+import java.time.LocalDate;
+
 public class StylistTaskManagementDto {
 
     private long id;
     private String stylistName;
     private String serviceType;
-    private String date;
+    private LocalDate date;
     private String startTime;
     private String endTime;
     private String status;
@@ -13,7 +15,7 @@ public class StylistTaskManagementDto {
     public StylistTaskManagementDto() {
     }
 
-    public StylistTaskManagementDto(long id, String stylistName, String serviceType, String date, String startTime, String endTime, String status) {
+    public StylistTaskManagementDto(long id, String stylistName, String serviceType, LocalDate date, String startTime, String endTime, String status) {
         this.id = id;
         this.stylistName = stylistName;
         this.serviceType = serviceType;
@@ -47,11 +49,11 @@ public class StylistTaskManagementDto {
         this.serviceType = serviceType;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

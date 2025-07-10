@@ -5,10 +5,10 @@ import java.util.List;
 
 public interface StylistTaskManagementServiceI {
 
-    StylistTaskManagementDto addStylistTaskManagement(StylistTaskManagementDto stylistTaskManagementDto);
+    StylistTaskManagementDto addStylistTask(StylistTaskManagementDto stylistTaskManagementDto);
 
-    List<StylistTaskManagementDto> getData();
-    StylistTaskManagementDto updateStylistTaskManagement(long id, StylistTaskManagementDto stylistTaskManagementDto);
-    StylistTaskManagementDto deleteStylistTaskManagement(long id);
+    List<StylistTaskManagementDto> getStylistTask();
+    StylistTaskManagementDto editStylistTask(Long id, StylistTaskManagementDto stylistTaskManagementDto);
+    StylistTaskManagementDto deleteStylistTask(Long id);
 
 }
