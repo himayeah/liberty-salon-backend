@@ -9,12 +9,12 @@ public interface EmployeeRegServiceI {
 
     //Method to add Employee data
     EmployeeRegDto addEmployeeRegEntity(EmployeeRegDto employeeRegDto);
-
     //Method to get Employee data
     List<EmployeeRegDto> getData();
-
     //deleteEmployeeReg
     EmployeeRegDto deleteEmployeeReg(long id);
+    //updateEmployee
+    EmployeeRegDto editEmployee(Long id, EmployeeRegDto employeeRegDto);
 }
 
 
