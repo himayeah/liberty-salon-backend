@@ -30,9 +30,9 @@ public class EmployeeRegService implements EmployeeRegServiceI {
         try{
             EmployeeRegEntity employeeRegEntity = employeeRegMapper.toEmployeeRegEntity(employeeRegDto);
             EmployeeRegEntity savedItem = employeeRegRepository.save(employeeRegEntity);
-
             EmployeeRegDto savedEmployeeRegDto = employeeRegMapper.toEmployeeRegDto(savedItem);
             System.out.println("saved Successfully: " + savedEmployeeRegDto.getFirstName());
+            // return employeeRegMapper.toEmployeeRegDto(savedItem);
             return savedEmployeeRegDto;
         }  catch (Exception e){
             throw new AppException("Request failed with error" + e, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -53,32 +53,32 @@ public class EmployeeRegService implements EmployeeRegServiceI {
 
     }
 
-    @Override
-    public EmployeeRegDto updateEmployeeReg(long id, EmployeeRegDto employeeRegDto) {
-        try {
-            Optional<EmployeeRegEntity> optionalEmployeeRegEntity = employeeRegRepository.findById(id);
-
-            if (!optionalEmployeeRegEntity.isPresent()) {
-                throw new AppException("Employee Reg Entity does not exist", HttpStatus.BAD_REQUEST);
-            }
-
-            EmployeeRegEntity existingEntity = optionalEmployeeRegEntity.get();
-
-            existingEntity.setFirstName(employeeRegDto.getFirstName());
-            existingEntity.setLastName(employeeRegDto.getLastName());
-            existingEntity.setFullName(employeeRegDto.getFullName());
-            existingEntity.setAge(employeeRegDto.getAge());
-            existingEntity.setEmail(employeeRegDto.getEmail());
-            existingEntity.setPhoneNumber(employeeRegDto.getPhoneNumber());
-            existingEntity.setBloodType(employeeRegDto.getBloodType());
-
-            EmployeeRegEntity updatedEntity = employeeRegRepository.save(existingEntity);
-
-            return employeeRegMapper.toEmployeeRegDto(updatedEntity);
-        } catch (Exception e) {
-            throw new AppException("Request failed with error " + e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @Override
+//    public EmployeeRegDto updateEmployeeReg(long id, EmployeeRegDto employeeRegDto) {
+//        try {
+//            Optional<EmployeeRegEntity> optionalEmployeeRegEntity = employeeRegRepository.findById(id);
+//
+//            if (!optionalEmployeeRegEntity.isPresent()) {
+//                throw new AppException("Employee Reg Entity does not exist", HttpStatus.BAD_REQUEST);
+//            }
+//
+//            EmployeeRegEntity existingEntity = optionalEmployeeRegEntity.get();
+//
+//            existingEntity.setFirstName(employeeRegDto.getFirstName());
+//            existingEntity.setLastName(employeeRegDto.getLastName());
+//            existingEntity.setFullName(employeeRegDto.getFullName());
+//            existingEntity.setAge(employeeRegDto.getAge());
+//            existingEntity.setEmail(employeeRegDto.getEmail());
+//            existingEntity.setPhoneNumber(employeeRegDto.getPhoneNumber());
+//            existingEntity.setBloodType(employeeRegDto.getBloodType());
+//
+//            EmployeeRegEntity updatedEntity = employeeRegRepository.save(existingEntity);
+//
+//            return employeeRegMapper.toEmployeeRegDto(updatedEntity);
+//        } catch (Exception e) {
+//            throw new AppException("Request failed with error " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
 
     @Override
@@ -97,6 +97,25 @@ public class EmployeeRegService implements EmployeeRegServiceI {
             throw new AppException("Request failed with error" + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @Override
+    public EmployeeRegDto editEmployee(Long id, EmployeeRegDto employeeRegDto) {
+        try {
+            Optional<EmployeeRegEntity> findEmployeeEntity = employeeRegRepository.findById(id);
+            if (!findEmployeeEntity.isPresent()){
+                throw new AppException("Employee does not exist", HttpStatus.BAD_REQUEST);
+            }
+
+            EmployeeRegEntity newEmployeeRegEntity = employeeRegMapper.toEmployeeRegEntity(employeeRegDto);
+            newEmployeeRegEntity.setId(id);
+            EmployeeRegEntity employeeRegEntity = employeeRegRepository.save(newEmployeeRegEntity);
+            EmployeeRegDto employeeRegDtoRes = employeeRegMapper.toEmployeeRegDto(employeeRegEntity);
+            System.out.println("update Successfully: " + employeeRegDtoRes.getFirstName());
+            return employeeRegDtoRes;
+        }catch (Exception e) {
+            throw new AppException("Request failed with error " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
 
