@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/appointment-scheduling-form")  // Base path for all appointment-schedule endpoints
+@RequestMapping("/appointment-schedule-form")  // Base path for all appointment-schedule endpoints
 public class AppointmentScheduleController {
 
     private final AppointmentScheduleServiceI appointmentScheduleServiceI;
@@ -20,7 +20,7 @@ public class AppointmentScheduleController {
         this.appointmentScheduleServiceI = appointmentScheduleServiceI;
     }
 
-    @PostMapping("/appointment-scheduling-form")
+    @PostMapping("/appointment-schedule-form")
     public ResponseEntity<AppointmentScheduleDto> addForm(@RequestBody AppointmentScheduleDto appointmentScheduleDto) throws AppException {
         try {
             AppointmentScheduleDto appointmentDtoResponse = appointmentScheduleServiceI.addAppointmentScheduleEntity(appointmentScheduleDto);
@@ -31,7 +31,7 @@ public class AppointmentScheduleController {
         }
     }
 
-    @GetMapping("/appointment-scheduling-form")
+    @GetMapping("/appointment-schedule-form")
     public ResponseEntity<List<AppointmentScheduleDto>> getData() {
         try {
             List<AppointmentScheduleDto> appointmentDtoList = appointmentScheduleServiceI.getData();
@@ -53,7 +53,7 @@ public class AppointmentScheduleController {
         }
     }
 
-    @DeleteMapping("/appointment-scheduling-form/{id}")
+    @DeleteMapping("/appointment-schedule-form/{id}")
     public ResponseEntity<AppointmentScheduleDto> deleteAppointment(@PathVariable long id) {
         try {
             AppointmentScheduleDto deletedDto = appointmentScheduleServiceI.deleteAppointmentScheduleEntity(id);

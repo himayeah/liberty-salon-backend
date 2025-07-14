@@ -49,7 +49,6 @@ public class ClientRegService implements ClientRegServiceI {
             return clientRegDtoList; // ✅ Return the actual list!
         } catch (Exception e) {
             throw new AppException("Request filled with error:" + e, HttpStatus.BAD_REQUEST);
-            //error handling p2.
         }
     }
 
@@ -58,15 +57,24 @@ public class ClientRegService implements ClientRegServiceI {
 
         try{
         Optional<ClientRegEntity> optionalClientRegEntity = clientRegRepository.findById(id);
-        /*optional means a container that may or may not have a value. This is used to avoid null errors*/
         if (!optionalClientRegEntity.isPresent()) {
             throw new AppException("Client Reg Does Not Exist", HttpStatus.BAD_REQUEST);
         }
 
-        ClientRegEntity newClientRegEntity = clientRegMapper.toClientRegEntity(clientRegDto);
-        ClientRegEntity clientRegEntity = clientRegRepository.save(newClientRegEntity);
-        ClientRegDto responseClientRegDto = clientRegMapper.toClientRegDto(clientRegEntity);
-        return responseClientRegDto;
+            // Get existing entity
+            ClientRegEntity existingEntity = optionalClientRegEntity.get();
+
+            // Update fields
+            existingEntity.setFirstName(clientRegDto.getFirstName());
+            existingEntity.setLastName(clientRegDto.getLastName());
+            existingEntity.setEmail(clientRegDto.getEmail());
+            existingEntity.setPhoneNumber(clientRegDto.getPhoneNumber());
+
+            // Save updated entity
+            ClientRegEntity updatedEntity = clientRegRepository.save(existingEntity);
+
+            // Map to DTO and return
+            return clientRegMapper.toClientRegDto(updatedEntity);
     }
         catch (Exception e) {
         throw new AppException("Request filled with error:" + e, HttpStatus.BAD_REQUEST);}

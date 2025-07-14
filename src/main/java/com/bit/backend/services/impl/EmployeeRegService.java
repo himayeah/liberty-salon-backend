@@ -18,14 +18,6 @@ import java.util.Optional;
 @Service
 public class EmployeeRegService implements EmployeeRegServiceI {
 
-//    private final EmployeeRegRepository employeeRegRepository;
-//    private final EmployeeRegMapper employeeRegMapper;
-//
-//    public EmployeeRegService(EmployeeRegRepository employeeRegRepository, EmployeeRegMapper employeeRegMapper) {
-//        this.employeeRegRepository = employeeRegRepository;
-//        this.employeeRegMapper = employeeRegMapper;
-//    }
-
     @Autowired
     private EmployeeRegRepository employeeRegRepository;
 
@@ -41,7 +33,6 @@ public class EmployeeRegService implements EmployeeRegServiceI {
 
             EmployeeRegDto savedEmployeeRegDto = employeeRegMapper.toEmployeeRegDto(savedItem);
             System.out.println("saved Successfully: " + savedEmployeeRegDto.getFirstName());
-//        return employeeRegMapper.toEmployeeRegDto(savedItem);
             return savedEmployeeRegDto;
         }  catch (Exception e){
             throw new AppException("Request failed with error" + e, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -61,6 +52,34 @@ public class EmployeeRegService implements EmployeeRegServiceI {
         }
 
     }
+
+    @Override
+    public EmployeeRegDto updateEmployeeReg(long id, EmployeeRegDto employeeRegDto) {
+        try {
+            Optional<EmployeeRegEntity> optionalEmployeeRegEntity = employeeRegRepository.findById(id);
+
+            if (!optionalEmployeeRegEntity.isPresent()) {
+                throw new AppException("Employee Reg Entity does not exist", HttpStatus.BAD_REQUEST);
+            }
+
+            EmployeeRegEntity existingEntity = optionalEmployeeRegEntity.get();
+
+            existingEntity.setFirstName(employeeRegDto.getFirstName());
+            existingEntity.setLastName(employeeRegDto.getLastName());
+            existingEntity.setFullName(employeeRegDto.getFullName());
+            existingEntity.setAge(employeeRegDto.getAge());
+            existingEntity.setEmail(employeeRegDto.getEmail());
+            existingEntity.setPhoneNumber(employeeRegDto.getPhoneNumber());
+            existingEntity.setBloodType(employeeRegDto.getBloodType());
+
+            EmployeeRegEntity updatedEntity = employeeRegRepository.save(existingEntity);
+
+            return employeeRegMapper.toEmployeeRegDto(updatedEntity);
+        } catch (Exception e) {
+            throw new AppException("Request failed with error " + e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @Override
     public EmployeeRegDto deleteEmployeeReg(long id) {
