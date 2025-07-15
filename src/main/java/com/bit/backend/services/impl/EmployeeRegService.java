@@ -52,34 +52,7 @@ public class EmployeeRegService implements EmployeeRegServiceI {
         }
 
     }
-
-//    @Override
-//    public EmployeeRegDto updateEmployeeReg(long id, EmployeeRegDto employeeRegDto) {
-//        try {
-//            Optional<EmployeeRegEntity> optionalEmployeeRegEntity = employeeRegRepository.findById(id);
-//
-//            if (!optionalEmployeeRegEntity.isPresent()) {
-//                throw new AppException("Employee Reg Entity does not exist", HttpStatus.BAD_REQUEST);
-//            }
-//
-//            EmployeeRegEntity existingEntity = optionalEmployeeRegEntity.get();
-//
-//            existingEntity.setFirstName(employeeRegDto.getFirstName());
-//            existingEntity.setLastName(employeeRegDto.getLastName());
-//            existingEntity.setFullName(employeeRegDto.getFullName());
-//            existingEntity.setAge(employeeRegDto.getAge());
-//            existingEntity.setEmail(employeeRegDto.getEmail());
-//            existingEntity.setPhoneNumber(employeeRegDto.getPhoneNumber());
-//            existingEntity.setBloodType(employeeRegDto.getBloodType());
-//
-//            EmployeeRegEntity updatedEntity = employeeRegRepository.save(existingEntity);
-//
-//            return employeeRegMapper.toEmployeeRegDto(updatedEntity);
-//        } catch (Exception e) {
-//            throw new AppException("Request failed with error " + e, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-
+    
 
     @Override
     public EmployeeRegDto deleteEmployeeReg(long id) {

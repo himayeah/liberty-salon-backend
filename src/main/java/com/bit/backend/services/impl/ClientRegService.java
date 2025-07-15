@@ -1,7 +1,9 @@
 package com.bit.backend.services.impl;
 
 import com.bit.backend.dtos.ClientRegDto;
+import com.bit.backend.dtos.EmployeeRegDto;
 import com.bit.backend.entities.ClientRegEntity;
+import com.bit.backend.entities.EmployeeRegEntity;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.ClientRegMapper;
 import com.bit.backend.repositories.ClientRegRepository;
@@ -28,12 +30,12 @@ public class ClientRegService implements ClientRegServiceI {
     public ClientRegDto addClientReg(ClientRegDto clientRegDto) {
 
         try {
-            System.out.println("In the Backend");
-
             //Converting DTO to Entity and Entity to DTO
+            clientRegDto.setPassword("123456");
             ClientRegEntity clientRegEntity = clientRegMapper.toClientRegEntity(clientRegDto);
             ClientRegEntity savedItem = clientRegRepository.save(clientRegEntity);
             ClientRegDto savedDto = clientRegMapper.toClientRegDto(savedItem);
+
             return savedDto;
         } catch (Exception e) {
             throw new AppException("Request filled with error:" + e, HttpStatus.BAD_REQUEST);
@@ -46,35 +48,27 @@ public class ClientRegService implements ClientRegServiceI {
         try {
             List<ClientRegEntity> clientRegEntityList = clientRegRepository.findAll();
             List<ClientRegDto> clientRegDtoList = clientRegMapper.toClientRegDtoList(clientRegEntityList);
-            return clientRegDtoList; // ✅ Return the actual list!
-        } catch (Exception e) {
-            throw new AppException("Request filled with error:" + e, HttpStatus.BAD_REQUEST);
+            return clientRegDtoList;
+        }
+        catch (Exception e) {
+            throw new AppException("Request failed with error" + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @Override
     public ClientRegDto updateClientReg(long id, ClientRegDto clientRegDto) {
-
         try{
         Optional<ClientRegEntity> optionalClientRegEntity = clientRegRepository.findById(id);
         if (!optionalClientRegEntity.isPresent()) {
             throw new AppException("Client Reg Does Not Exist", HttpStatus.BAD_REQUEST);
         }
 
-            // Get existing entity
-            ClientRegEntity existingEntity = optionalClientRegEntity.get();
-
-            // Update fields
-            existingEntity.setFirstName(clientRegDto.getFirstName());
-            existingEntity.setLastName(clientRegDto.getLastName());
-            existingEntity.setEmail(clientRegDto.getEmail());
-            existingEntity.setPhoneNumber(clientRegDto.getPhoneNumber());
-
-            // Save updated entity
-            ClientRegEntity updatedEntity = clientRegRepository.save(existingEntity);
-
-            // Map to DTO and return
-            return clientRegMapper.toClientRegDto(updatedEntity);
+            ClientRegEntity newClientRegEntity = clientRegMapper.toClientRegEntity(clientRegDto);
+            newClientRegEntity.setId(id);
+            ClientRegEntity clientRegEntity = clientRegRepository.save(newClientRegEntity);
+            ClientRegDto clientRegDtoRes = clientRegMapper.toClientRegDto(clientRegEntity);
+            System.out.println("update Successfully: " + clientRegDtoRes.getFirstName());
+            return clientRegDtoRes;
     }
         catch (Exception e) {
         throw new AppException("Request filled with error:" + e, HttpStatus.BAD_REQUEST);}

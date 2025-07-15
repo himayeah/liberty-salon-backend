@@ -7,16 +7,20 @@ public class ClientRegDto {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private String userID;
+    private String password;
 
     public ClientRegDto() {
     }
 
-    public ClientRegDto(long id, String firstName, String lastName, String email, String phoneNumber) {
+    public ClientRegDto(long id, String firstName, String lastName, String email, String phoneNumber, String userID, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.userID = userID;
+        this.password = password;
     }
 
     public long getId() {
@@ -57,6 +61,22 @@ public class ClientRegDto {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

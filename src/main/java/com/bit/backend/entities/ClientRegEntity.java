@@ -22,6 +22,12 @@ public class ClientRegEntity {
     @Column(name="phone_number")
     private String phoneNumber;
 
+    @Column(name="user_id")
+    private String userID;
+
+    @Column(name="password")
+    private String password;
+
     public ClientRegEntity() {
     }
 
@@ -71,6 +77,22 @@ public class ClientRegEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 
