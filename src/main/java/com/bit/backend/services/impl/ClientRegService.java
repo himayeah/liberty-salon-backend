@@ -1,9 +1,7 @@
 package com.bit.backend.services.impl;
 
 import com.bit.backend.dtos.ClientRegDto;
-import com.bit.backend.dtos.EmployeeRegDto;
 import com.bit.backend.entities.ClientRegEntity;
-import com.bit.backend.entities.EmployeeRegEntity;
 import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.ClientRegMapper;
 import com.bit.backend.repositories.ClientRegRepository;
@@ -91,5 +89,6 @@ public class ClientRegService implements ClientRegServiceI {
         catch (Exception e) {
         throw new AppException("Request filled with error:" + e, HttpStatus.BAD_REQUEST);}
     }
+
 
 }

@@ -5,16 +5,10 @@ import com.bit.backend.dtos.AppointmentScheduleDto;
 import java.util.List;
 
 public interface AppointmentScheduleServiceI {
-
-    // Method to add appointment
-    AppointmentScheduleDto addAppointmentScheduleEntity(AppointmentScheduleDto appointmentScheduleDto);
-
-    // Method to retrieve all appointments
+    AppointmentScheduleDto addAppointmentSchedule(AppointmentScheduleDto appointmentScheduleDto);
     List<AppointmentScheduleDto> getData();
+    AppointmentScheduleDto deleteData(long id);
+    AppointmentScheduleDto editData(long id, AppointmentScheduleDto appointmentScheduleDto);
 
-    // Method to update appointment by id
-    AppointmentScheduleDto updateAppointmentScheduleEntity(long id, AppointmentScheduleDto appointmentScheduleDto);
-
-    // Method to delete appointment by id
-    AppointmentScheduleDto deleteAppointmentScheduleEntity(long id);
+    AppointmentScheduleDto editData(long id, AppointmentScheduleDto appointmentScheduleDto);
 }

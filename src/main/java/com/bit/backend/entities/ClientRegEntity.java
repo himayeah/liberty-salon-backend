@@ -31,12 +31,14 @@ public class ClientRegEntity {
     public ClientRegEntity() {
     }
 
-    public ClientRegEntity(Long id, String firstName, String lastName, String email, String phoneNumber) {
+    public ClientRegEntity(Long id, String firstName, String lastName, String email, String phoneNumber, String userID, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.userID = userID;
+        this.password = password;
     }
 
     public Long getId() {

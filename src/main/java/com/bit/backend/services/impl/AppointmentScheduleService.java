@@ -6,6 +6,7 @@ import com.bit.backend.exceptions.AppException;
 import com.bit.backend.mappers.AppointmentScheduleMapper;
 import com.bit.backend.repositories.AppointmentScheduleRepository;
 import com.bit.backend.services.AppointmentScheduleServiceI;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -15,67 +16,70 @@ import java.util.Optional;
 @Service
 public class AppointmentScheduleService implements AppointmentScheduleServiceI {
 
-    private final AppointmentScheduleRepository appointmentScheduleRepository;
-    private final AppointmentScheduleMapper appointmentScheduleMapper;
+    @Autowired
+    private AppointmentScheduleRepository appointmentScheduleRepository;
 
-    public AppointmentScheduleService(AppointmentScheduleRepository appointmentScheduleRepository, AppointmentScheduleMapper appointmentScheduleMapper) {
-        this.appointmentScheduleRepository = appointmentScheduleRepository;
-        this.appointmentScheduleMapper = appointmentScheduleMapper;
-    }
+    @Autowired
+    private AppointmentScheduleMapper appointmentScheduleMapper;
 
     @Override
-    public AppointmentScheduleDto addAppointmentScheduleEntity(AppointmentScheduleDto appointmentScheduleDto) {
+    public AppointmentScheduleDto addAppointmentSchedule(AppointmentScheduleDto appointmentScheduleDto) {
         try {
-            System.out.println("*** backend - addAppointmentScheduleEntity ***");
-
-            AppointmentScheduleEntity entity = appointmentScheduleMapper.toAppointmentScheduleEntity(appointmentScheduleDto);
-            AppointmentScheduleEntity savedEntity = appointmentScheduleRepository.save(entity);
-            return appointmentScheduleMapper.toAppointmentScheduleDto(savedEntity);
+            AppointmentScheduleEntity appointmentScheduleEntity = appointmentScheduleMapper.toAppointmentScheduleEntity(appointmentScheduleDto);
+            AppointmentScheduleEntity savedItem = appointmentScheduleRepository.save(appointmentScheduleEntity);
+            AppointmentScheduleDto savedAppointmentScheduleDto = appointmentScheduleMapper.toAppointmentScheduleDto(savedItem);
+            System.out.println("saved Successfully: " + savedAppointmentScheduleDto.getServiceType());
+            return savedAppointmentScheduleDto;
         } catch (Exception e) {
-            throw new AppException("Request failed with error: " + e, HttpStatus.BAD_REQUEST);
+            throw new AppException("Request failed with error " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @Override
     public List<AppointmentScheduleDto> getData() {
         try {
-            List<AppointmentScheduleEntity> entityList = appointmentScheduleRepository.findAll();
-            return appointmentScheduleMapper.toAppointmentScheduleDtoList(entityList);
+            List<AppointmentScheduleEntity> appointmentScheduleEntityList = appointmentScheduleRepository.findAll();
+            return appointmentScheduleMapper.toAppointmentScheduleDtoList(appointmentScheduleEntityList);
         } catch (Exception e) {
-            throw new AppException("Request failed with error: " + e, HttpStatus.BAD_REQUEST);
+            throw new AppException("Request failed with error " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @Override
-    public AppointmentScheduleDto updateAppointmentScheduleEntity(long id, AppointmentScheduleDto appointmentScheduleDto) {
+    public AppointmentScheduleDto deleteData(long id) {
         try {
-            Optional<AppointmentScheduleEntity> optionalEntity = appointmentScheduleRepository.findById(id);
-            if (!optionalEntity.isPresent()) {
-                throw new AppException("Appointment schedule does not exist", HttpStatus.BAD_REQUEST);
-            }
+            Optional<AppointmentScheduleEntity> optionalAppointmentScheduleEntity = appointmentScheduleRepository.findById(id);
 
-            AppointmentScheduleEntity newEntity = appointmentScheduleMapper.toAppointmentScheduleEntity(appointmentScheduleDto);
-            newEntity.setId(id); // ensure the ID is set to update existing record
-
-            AppointmentScheduleEntity savedEntity = appointmentScheduleRepository.save(newEntity);
-            return appointmentScheduleMapper.toAppointmentScheduleDto(savedEntity);
-        } catch (Exception e) {
-            throw new AppException("Request failed with error: " + e, HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @Override
-    public AppointmentScheduleDto deleteAppointmentScheduleEntity(long id) {
-        try {
-            Optional<AppointmentScheduleEntity> optionalEntity = appointmentScheduleRepository.findById(id);
-            if (!optionalEntity.isPresent()) {
-                throw new AppException("Appointment schedule does not exist", HttpStatus.BAD_REQUEST);
+            if (!optionalAppointmentScheduleEntity.isPresent()) {
+                throw new AppException("Appointment Schedule Entity does not exist", HttpStatus.BAD_REQUEST);
             }
 
             appointmentScheduleRepository.deleteById(id);
-            return appointmentScheduleMapper.toAppointmentScheduleDto(optionalEntity.get());
+            return appointmentScheduleMapper.toAppointmentScheduleDto(optionalAppointmentScheduleEntity.get());
         } catch (Exception e) {
-            throw new AppException("Request failed with error: " + e, HttpStatus.BAD_REQUEST);
+            throw new AppException("Request failed with error " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @Override
+    public AppointmentScheduleDto editData(long id, AppointmentScheduleDto appointmentScheduleDto) {
+        try {
+            Optional<AppointmentScheduleEntity> findAppointmentScheduleEntity = appointmentScheduleRepository.findById(id);
+            if (!findAppointmentScheduleEntity.isPresent()) {
+                throw new AppException("Appointment Schedule does not exist", HttpStatus.BAD_REQUEST);
+            }
+
+            AppointmentScheduleEntity newAppointmentScheduleEntity = appointmentScheduleMapper.toAppointmentScheduleEntity(appointmentScheduleDto);
+            newAppointmentScheduleEntity.setId(id);
+
+            AppointmentScheduleEntity updatedEntity = appointmentScheduleRepository.save(newAppointmentScheduleEntity);
+            AppointmentScheduleDto appointmentScheduleDtoRes = appointmentScheduleMapper.toAppointmentScheduleDto(updatedEntity);
+
+            System.out.println("update Successfully: " + appointmentScheduleDtoRes.getServiceType());
+            return appointmentScheduleDtoRes;
+        } catch (Exception e) {
+            throw new AppException("Request failed with error " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

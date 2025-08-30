@@ -14,13 +14,6 @@ import java.util.List;
 //@RequestMapping("/employee_reg_form")
 public class EmployeeRegController {
 
-//    private final EmployeeRegServiceI employeeRegService;
-//
-//    public EmployeeRegController(EmployeeRegServiceI employeeRegService) {
-//        this.employeeRegService = employeeRegService;
-//    }
-
-
     private final EmployeeRegServiceI employeeRegServiceI;
 
     public EmployeeRegController(EmployeeRegServiceI employeeRegServiceI) {

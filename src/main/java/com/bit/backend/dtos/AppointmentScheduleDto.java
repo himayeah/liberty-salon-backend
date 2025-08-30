@@ -1,25 +1,18 @@
 package com.bit.backend.dtos;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 public class AppointmentScheduleDto {
-
     private Long id;
-    private String serviceName;
+    private String serviceType;
     private String serviceDescription;
-    private LocalDate serviceDate;
-    private LocalTime serviceTime;
+    private String appointmentDate;
 
     public AppointmentScheduleDto() {
     }
-
-    public AppointmentScheduleDto(Long id, String serviceName, String serviceDescription, LocalDate date, LocalTime time) {
+    public AppointmentScheduleDto(Long id, String serviceType, String serviceDescription, String appointmentDate) {
         this.id = id;
-        this.serviceName = serviceName;
+        this.serviceType = serviceType;
         this.serviceDescription = serviceDescription;
-        this.serviceDate = date;
-        this.serviceTime = time;
+        this.appointmentDate = appointmentDate;
     }
 
     public Long getId() {
@@ -30,12 +23,12 @@ public class AppointmentScheduleDto {
         this.id = id;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public String getServiceType() {
+        return serviceType;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
     }
 
     public String getServiceDescription() {
@@ -46,20 +39,12 @@ public class AppointmentScheduleDto {
         this.serviceDescription = serviceDescription;
     }
 
-    public LocalDate getDate() {
-        return serviceDate;
+    public String getAppointmentDate() {
+        return appointmentDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.serviceDate = date;
-    }
-
-    public LocalTime getTime() {
-        return serviceTime;
-    }
-
-    public void setTime(LocalTime time) {
-        this.serviceTime = time;
+    public void setAppointmentDate(String appointmentDate) {
+        this.appointmentDate = appointmentDate;
     }
 }
 
