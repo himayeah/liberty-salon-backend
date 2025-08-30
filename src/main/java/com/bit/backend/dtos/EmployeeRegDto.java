@@ -1,33 +1,35 @@
 package com.bit.backend.dtos;
 
-public class ClientRegDto {
+public class EmployeeRegDto {
 
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
+    private String fullName;
+    private String age;
     private String email;
     private String phoneNumber;
-    private String userID;
-    private String password;
+    private String bloodType;
 
-    public ClientRegDto() {
+    public EmployeeRegDto() {
     }
 
-    public ClientRegDto(long id, String firstName, String lastName, String email, String phoneNumber, String userID, String password) {
+    public EmployeeRegDto(Long id, String firstName, String lastName, String fullName, String age, String email, String phoneNumber, String bloodType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.fullName = fullName;
+        this.age = age;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.userID = userID;
-        this.password = password;
+        this.bloodType = bloodType;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -47,6 +49,22 @@ public class ClientRegDto {
         this.lastName = lastName;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -63,23 +81,12 @@ public class ClientRegDto {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getBloodType() {
+        return bloodType;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
     }
 }
-
-
-
 
