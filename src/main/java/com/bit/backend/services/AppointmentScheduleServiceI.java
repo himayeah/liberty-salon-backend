@@ -10,5 +10,5 @@ public interface AppointmentScheduleServiceI {
     AppointmentScheduleDto deleteData(long id);
     AppointmentScheduleDto editData(long id, AppointmentScheduleDto appointmentScheduleDto);
 
-    AppointmentScheduleDto editData(long id, AppointmentScheduleDto appointmentScheduleDto);
+   // AppointmentScheduleDto editData(long id, AppointmentScheduleDto appointmentScheduleDto);
 }
