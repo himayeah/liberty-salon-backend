@@ -22,15 +22,23 @@ public class ClientRegEntity {
     @Column(name="phone_number")
     private String phoneNumber;
 
+    @Column(name="user_id")
+    private String userID;
+
+    @Column(name="password")
+    private String password;
+
     public ClientRegEntity() {
     }
 
-    public ClientRegEntity(Long id, String firstName, String lastName, String email, String phoneNumber) {
+    public ClientRegEntity(Long id, String firstName, String lastName, String email, String phoneNumber, String userID, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.userID = userID;
+        this.password = password;
     }
 
     public Long getId() {
@@ -71,6 +79,22 @@ public class ClientRegEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 
