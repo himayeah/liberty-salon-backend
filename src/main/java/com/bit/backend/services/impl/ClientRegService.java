@@ -36,7 +36,7 @@ public class ClientRegService implements ClientRegServiceI {
             ClientRegDto savedDto = clientRegMapper.toClientRegDto(savedItem);
             return savedDto;
         } catch (Exception e) {
-            throw new AppException("Request filled with error:" + e, HttpStatus.BAD_REQUEST);
+            throw new AppException("Request failed with error:" + e, HttpStatus.BAD_REQUEST);
         }
     }
 

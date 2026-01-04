@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-
+ 
 @RestController
 @RequestMapping("/client-reg") // Base path for all client-reg endpoints
 public class ClientRegController {
@@ -20,10 +20,14 @@ public class ClientRegController {
         this.clientRegServiceI = clientRegServiceI;
     }
 
+    //ResponseEntity<ClientRegDto> : The response body will contain a ClientRegDto
+    //ResponseEntity is a wrapper Spring uses to send a response back to the frontend.
     @PostMapping
     public ResponseEntity<ClientRegDto> addForm(@RequestBody ClientRegDto clientRegDto) throws AppException {
 
         try{
+            //send the DTO to the addClientReg() method in the service interface class, and do the function accordingly,
+            // then save the response as the clientRegDtoResponse (Which is a ClientRegDto type)
             ClientRegDto clientRegDtoResponse = clientRegServiceI.addClientReg(clientRegDto);
             return ResponseEntity.created(URI.create("/client-reg/" + clientRegDtoResponse.getFirstName()))
                     .body(clientRegDtoResponse);
@@ -38,6 +42,7 @@ public class ClientRegController {
     public ResponseEntity<List<ClientRegDto>> getData() {
 
         try{
+            //***calls the getData() function in the ServiceI, does whatever the functionality it's asking to do, and saves the result of it in clientRegDtoList
         List<ClientRegDto> clientRegDtoList = clientRegServiceI.getData();
         return ResponseEntity.ok(clientRegDtoList);
     } catch (Exception e) {
