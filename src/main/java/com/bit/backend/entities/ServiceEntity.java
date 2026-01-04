@@ -1,25 +1,31 @@
 package com.bit.backend.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@Entity
 @Getter
 @Setter
-@Entity
+@RequiredArgsConstructor
+@AllArgsConstructor
 @Table(name= "service")
 public class ServiceEntity {
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@ID means this is the primary key. @GeneratedValue means it's auto generated
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-   @Column(name="service_name")
+    @Column(name="service_name")
     private String serviceName;
 
     @Column(name="price")
     private BigDecimal price;
+
 
     @Column(name="commission")
     private BigDecimal commission;
@@ -33,13 +39,9 @@ public class ServiceEntity {
     @Column(name="is_Active")
     private String isActive;
 
-    public ServiceEntity(Long id, String serviceName, BigDecimal price, BigDecimal commission, String colorCode, String description, String isActive) {
-        this.id = id;
-        this.serviceName = serviceName;
-        this.price = price;
-        this.commission = commission;
-        this.colorCode = colorCode;
-        this.description = description;
-        this.isActive = isActive;
-    }
+    //serviceCategory Column is joined with the id column of the service Category
+    @ManyToOne
+    @JoinColumn(name = "serviceCategory", referencedColumnName = "id")
+    private ServiceCategoryEntity serviceCategory;
+
 }
