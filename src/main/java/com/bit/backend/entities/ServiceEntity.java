@@ -42,4 +42,5 @@ public class ServiceEntity {
         this.description = description;
         this.isActive = isActive;
     }
+
 }

@@ -1,8 +1,12 @@
 package com.bit.backend.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name= "client_reg")
 public class ClientRegEntity {
 
@@ -22,80 +26,44 @@ public class ClientRegEntity {
     @Column(name="phone_number")
     private String phoneNumber;
 
-    @Column(name="user_id")
-    private String userID;
+    @Column(name="date_of_birth")
+    private String dateOfBirth;
 
-    @Column(name="password")
-    private String password;
+    @Column(name="gender")
+    private String gender;
+
+    @Column(name="preffered_stylist")
+    private String prefferedStylist;
+
+    @Column(name="allergies")
+    private String allergies;
+
+    @Column(name="total_visits")
+    private int totalVisits;
+
+    @Column(name="last_visited_date")
+    private String lastVisitedDate;
+
+    @Column(name="lifetime_value")
+    private double lifetimeValue;
+
+    public ClientRegEntity(Long id, String firstName, String lastName, String email, String phoneNumber, String dateOfBirth, String gender, String prefferedStylist, String allergies, int totalVisits, String lastVisitedDate, double lifetimeValue) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.prefferedStylist = prefferedStylist;
+        this.allergies = allergies;
+        this.totalVisits = totalVisits;
+        this.lastVisitedDate = lastVisitedDate;
+        this.lifetimeValue = lifetimeValue;
+    }
 
     public ClientRegEntity() {
     }
 
-    public ClientRegEntity(Long id, String firstName, String lastName, String email, String phoneNumber, String userID, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.userID = userID;
-        this.password = password;
-    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
-
-

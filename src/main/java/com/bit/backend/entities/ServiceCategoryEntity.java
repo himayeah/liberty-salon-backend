@@ -11,6 +11,7 @@ import lombok.Setter;
 @Entity
 @Table(name="service_category")
 public class ServiceCategoryEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
