@@ -9,7 +9,6 @@ import com.bit.backend.services.ClientRegServiceI;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +28,7 @@ public class ClientRegService implements ClientRegServiceI {
 
         try {
             //Converting DTO to Entity and Entity to DTO
-            clientRegDto.setPassword("123456");
+            // clientRegDto.setPassword("123456"); // Removed as setPassword doesn't exist in DTO
             ClientRegEntity clientRegEntity = clientRegMapper.toClientRegEntity(clientRegDto);
             ClientRegEntity savedItem = clientRegRepository.save(clientRegEntity);
             ClientRegDto savedDto = clientRegMapper.toClientRegDto(savedItem);

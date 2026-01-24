@@ -41,15 +41,15 @@ public class ServiceController {
        }
     }
 
-    @PutMapping ("/service-edit/${id}")
-    public ResponseEntity<ServiceDto> updateService(@PathVariable long id, @RequestBody ServiceDto serviceDto) {
-        try {
-            ServiceDto responseServiceDto = serviceServiceI.updateService(id, serviceDto);
-            return ResponseEntity.ok(responseServiceDto);
-        } catch (Exception e) {
-            throw new AppException("Request failed with error:" + e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @PutMapping ("/service-edit/${id}")
+//    public ResponseEntity<ServiceDto> updateService(@PathVariable long id, @RequestBody ServiceDto serviceDto) {
+//        try {
+//            ServiceDto responseServiceDto = serviceServiceI.updateService(id, serviceDto);
+//            return ResponseEntity.ok(responseServiceDto);
+//        } catch (Exception e) {
+//            throw new AppException("Request failed with error:" + e, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ServiceDto> deleteService(@PathVariable long id) {

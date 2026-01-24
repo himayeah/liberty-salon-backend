@@ -1,5 +1,10 @@
 package com.bit.backend.dtos;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ClientRegDto {
 
     private long id;
@@ -7,59 +12,31 @@ public class ClientRegDto {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private String dateOfBirth;
+    private String gender;
+    private String preferredStylist;
+    private String allergies;
+    private int totalVisits;
+    private String lastVisitedDate;
+    private double lifetimeValue;
 
     public ClientRegDto() {
     }
 
-    public ClientRegDto(long id, String firstName, String lastName, String email, String phoneNumber) {
+    public ClientRegDto(long id, String firstName, String lastName, String email, String phoneNumber, String dateOfBirth, String gender, String preferredStylist, String allergies, int totalVisits, String lastVisitedDate, double lifetimeValue) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.preferredStylist = preferredStylist;
+        this.allergies = allergies;
+        this.totalVisits = totalVisits;
+        this.lastVisitedDate = lastVisitedDate;
+        this.lifetimeValue = lifetimeValue;
     }
 }
-
-
 
 
