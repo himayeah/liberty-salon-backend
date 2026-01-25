@@ -52,11 +52,12 @@ public class ClientRegController {
         throw new AppException("Request failed with error:" + e, HttpStatus.INTERNAL_SERVER_ERROR);}
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<ClientRegDto> updateClientReg(
             @PathVariable long id,
             @RequestBody ClientRegDto clientRegDto) {
         try{
+            System.out.println("Data Received");
         ClientRegDto responseClientRegDto = clientRegServiceI.updateClientReg(id, clientRegDto);
         return ResponseEntity.ok(responseClientRegDto);
     }
@@ -64,7 +65,7 @@ public class ClientRegController {
         throw new AppException("Request failed with error:" + e, HttpStatus.INTERNAL_SERVER_ERROR);}
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<ClientRegDto> deleteClientReg(@PathVariable long id) {
 
         try{

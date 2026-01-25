@@ -21,14 +21,21 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception { // can give any method name
-        http.csrf(AbstractHttpConfigurer::disable) // method referencing, disabling csrf
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(AbstractHttpConfigurer::disable)
                 .addFilterBefore(new JwtAuthFilter(userAuthProvider), BasicAuthenticationFilter.class)
-                .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // to handle csrf so you don't have to worry about session id
+                .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((request) ->
-                        request.requestMatchers(HttpMethod.POST, "/login", "/register","/employee_reg/**", "/api/v1/client-reg/**").permitAll()
-                       .anyRequest().authenticated()
+                        request.requestMatchers(
+                                "/login",
+                                "/register",
+                                "/employee_reg/**",
+                                "/api/v1/client-reg/**"
+                        ).permitAll()
+                                .anyRequest().authenticated()
                 );
+
         return http.build();
     }
+
 }
