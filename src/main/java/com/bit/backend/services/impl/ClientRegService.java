@@ -25,11 +25,14 @@ public class ClientRegService implements ClientRegServiceI {
 
     @Override
     public ClientRegDto addClientReg(ClientRegDto clientRegDto) {
+        System.out.println("Data Object 2 : " + clientRegDto);
 
+        System.out.println("Client First Name 2  :" + clientRegDto.getFirstName());
         try {
             //Converting DTO to Entity and Entity to DTO
             // clientRegDto.setPassword("123456"); // Removed as setPassword doesn't exist in DTO
             ClientRegEntity clientRegEntity = clientRegMapper.toClientRegEntity(clientRegDto);
+            System.out.println("Client First Name 3  :" + clientRegEntity.getFirstName());
             ClientRegEntity savedItem = clientRegRepository.save(clientRegEntity);
             ClientRegDto savedDto = clientRegMapper.toClientRegDto(savedItem);
 
