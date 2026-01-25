@@ -1,13 +1,16 @@
 package com.bit.backend.dtos;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClientRegDto {
 
-    private long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -19,24 +22,7 @@ public class ClientRegDto {
     private int totalVisits;
     private String lastVisitedDate;
     private double lifetimeValue;
-
-    public ClientRegDto() {
-    }
-
-    public ClientRegDto(long id, String firstName, String lastName, String email, String phoneNumber, String dateOfBirth, String gender, String preferredStylist, String allergies, int totalVisits, String lastVisitedDate, double lifetimeValue) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-        this.preferredStylist = preferredStylist;
-        this.allergies = allergies;
-        this.totalVisits = totalVisits;
-        this.lastVisitedDate = lastVisitedDate;
-        this.lifetimeValue = lifetimeValue;
-    }
 }
+
 
 

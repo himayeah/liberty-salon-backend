@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
  
 @RestController
-@RequestMapping("/client-reg") // Base path for all client-reg endpoints
+@RequestMapping("/api/v1/client-reg") // Base path for all client-reg endpoints
 public class ClientRegController {
 
     private final ClientRegServiceI clientRegServiceI;
@@ -26,6 +26,9 @@ public class ClientRegController {
     public ResponseEntity<ClientRegDto> addForm(@RequestBody ClientRegDto clientRegDto) throws AppException {
 
         try{
+            System.out.println("Data Object :" + clientRegDto);
+            System.out.println("Client First Name  :" + clientRegDto.getFirstName());
+
             //send the DTO to the addClientReg() method in the service interface class, and do the function accordingly,
             // then save the response as the clientRegDtoResponse (Which is a ClientRegDto type)
             ClientRegDto clientRegDtoResponse = clientRegServiceI.addClientReg(clientRegDto);
