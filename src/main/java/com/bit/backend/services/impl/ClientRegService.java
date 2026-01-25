@@ -57,6 +57,7 @@ public class ClientRegService implements ClientRegServiceI {
 
     @Override
     public ClientRegDto updateClientReg(long id, ClientRegDto clientRegDto) {
+        System.out.println("Hit ");
         try{
         Optional<ClientRegEntity> optionalClientRegEntity = clientRegRepository.findById(id);
         if (!optionalClientRegEntity.isPresent()) {
